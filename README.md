@@ -1,6 +1,6 @@
-# Bedrock AgentCore マルチエージェント
+# Bedrock on AgentCore with Streamlit（メモリ対応版）
 
-## 構成
+## エージェント構成（サンプル）
 
 - Supervisor
   - サブエージェント1（AWS Knowledge MCP）
@@ -60,7 +60,11 @@ arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
 ```sh
 cd backend
 pip install strands-agents=1.0.1 bedrock-agentcore==0.1.0 bedrock-agentcore-starter-toolkit==0.1.1
+
+# ビルド
 agentcore configure --entrypoint src/server.py -er <IAMロールのARN>
+
+# デプロイ
 agentcore launch --codebuild
 ```
 
