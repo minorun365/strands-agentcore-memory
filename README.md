@@ -1,4 +1,4 @@
-# Bedrock on AgentCore with Streamlit（メモリ対応版）
+# Strands on AgentCore with Streamlit（メモリ対応版）
 
 AgentCore Memory周りの実装はだいぶ雑なので、お試し程度でお願いします！
 
