@@ -1,6 +1,9 @@
 # Strands on AgentCore with Streamlit（メモリ対応版）
 
-AgentCore Memory周りの実装はだいぶ雑なので、お試し程度でお願いします！
+※AgentCore Memory周りの実装はだいぶ雑なので、お試し程度でお願いします！
+
+<img width="1382" height="649" alt="スクリーンショット 2025-07-24 18 05 07" src="https://github.com/user-attachments/assets/c2f72236-4db8-4f20-832b-594bbb020cb6" />
+
 
 ## エージェント構成（サンプル）
 
