@@ -15,11 +15,43 @@
 ## 構築手順
 
 ### 環境変数のセット
+※`AWS_DEFAULT_REGION` には以下のいずれかを入力してください。
+- us-east-1 (バージニア北部リージョン)
+- us-west-2 (オレゴンリージョン)
+- ap-southeast-2 (シドニーリージョン)
+- eu-central-1 (フランクフルトリージョン)
 
 ```sh
 export AWS_ACCESS_KEY_ID=xxx
 export AWS_SECRET_ACCESS_KEY=xxx
 export AWS_DEFAULT_REGION=xxx
+```
+
+### AWS CLIのインストール
+
+```sh
+# このコマンドが成功すれば、次のECRプライベートリポジトリ作成手順へ進む
+aws --version
+```
+
+もし上記出力ができなかった場合は、以下手順を実行してAWS CLIをインストールする
+
+```sh
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+完了次第、インストールできているか確認する
+
+```sh
+aws --version
+```
+
+出力例(全く同じでなくてもOK)
+
+```sh
+aws-cli/2.27.58 Python/3.13.4 Linux/6.8.0-1027-azure exe/x86_64.ubuntu.24
 ```
 
 ### ECRプライベートリポジトリ作成
@@ -48,26 +80,21 @@ aws iam create-role \
     }'
 
 # 必要なポリシーをアタッチ
-aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn
-arn:aws:iam::aws:policy/BedrockAgentCoreFullAccess
-aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn
-arn:aws:iam::aws:policy/AmazonBedrockFullAccess
-aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn
-arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn
-arn:aws:iam::aws:policy/CloudWatchFullAccessV2
-aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn
-arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn arn:aws:iam::aws:policy/BedrockAgentCoreFullAccess
+aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn arn:aws:iam::aws:policy/CloudWatchFullAccessV2
+aws iam attach-role-policy --role-name BedrockAgentCoreExecutionRole --policy-arn arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
 ```
 
 ### AgentCoreにデプロイ
 
 ```sh
 cd backend
-pip install strands-agents=1.0.1 bedrock-agentcore==0.1.0 bedrock-agentcore-starter-toolkit==0.1.1
+pip install strands-agents==1.0.1 bedrock-agentcore==0.1.1 bedrock-agentcore-starter-toolkit==0.1.2
 
 # ビルド
-agentcore configure --entrypoint src/server.py -er <IAMロールのARN>
+agentcore configure --entrypoint src/main.py -er <IAMロールのARN>
 
 # デプロイ
 agentcore launch --codebuild
