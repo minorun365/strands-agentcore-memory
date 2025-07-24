@@ -18,7 +18,7 @@ render_sidebar()
 
 # メインエリアのタイトル
 st.title("Strands on AgentCore")
-st.write("AWSのことなら何でも聞いてね！")
+st.write("AWSと、日本の祝日のことなら何でも聞いてね！")
 
 # 現在のスレッドの会話履歴を表示（インタラクティブチャット形式）
 render_chat_history()
