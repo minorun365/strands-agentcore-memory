@@ -2,14 +2,10 @@
 import asyncio
 import boto3
 import streamlit as st
-from dotenv import load_dotenv
 
 # カスタムモジュールのインポート
 from session_manager import initialize_session_state, render_sidebar, render_chat_history, add_message_to_thread
 from stream_processor import process_stream_interactive
-
-# 環境変数をロード
-load_dotenv()
 
 # Bedrock AgentCoreクライアントを初期化
 agent_core_client = boto3.client('bedrock-agentcore')
