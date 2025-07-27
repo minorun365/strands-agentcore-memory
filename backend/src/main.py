@@ -23,7 +23,7 @@ class AgentManager:
         self.memory_manager = UnifiedMemoryManager()
         # Strands Agents 1.0.1の新機能を活用した効率的なエージェント設定
         self.agent = Agent(
-            model="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            model="anthropic.claude-3-5-sonnet-20241022-v2:0",
             tools=[aws_knowledge_agent, japanese_holiday_agent],
             system_prompt="""あなたは2つの専門サブエージェントを活用するAWSエキスパートです：
 
