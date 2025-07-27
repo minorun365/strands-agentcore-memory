@@ -2,6 +2,11 @@
 import asyncio
 import boto3
 import streamlit as st
+import os
+from dotenv import load_dotenv
+
+# .envファイルから環境変数を読み込み
+load_dotenv('../.env')
 
 # カスタムモジュールのインポート
 from session_manager import initialize_session_state, render_sidebar, render_chat_history, add_message_to_thread
