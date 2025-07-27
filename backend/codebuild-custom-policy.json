@@ -1,0 +1,28 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codebuild:CreateProject",
+                "codebuild:UpdateProject",
+                "codebuild:BatchGetProjects",
+                "codebuild:StartBuild",
+                "codebuild:BatchGetBuilds",
+                "codebuild:StopBuild",
+                "codebuild:ListProjects",
+                "codebuild:ListBuilds"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::613656354608:role/AmazonBedrockAgentCoreSDKCodeBuild-*"
+            ]
+        }
+    ]
+}
